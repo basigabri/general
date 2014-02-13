@@ -1,0 +1,18 @@
+DESCONECTADO="$(/opt/cisco/anyconnect/bin/vpn stats | grep 'The VPN client state is not')"
+if [ -z "$DESCONECTADO" ]; then
+	# notify-send -t 500 "Ya conectado VPN dSN"
+	echo "Ya estas conectado a VPN dSN"
+	exit
+else
+	/home/basilis/VPN/vpn-dsn-prepro.sh
+fi
+
+DESCONECTADOre="$(/opt/cisco/anyconnect/bin/vpn stats | grep 'The VPN client state is not')"
+if [ -z "$DESCONECTADOre" ]; then
+	# notify-send -i /usr/share/icons/gnome/48x48/actions/call-start.png -t 2000 "Conectado VPN dSN"
+	echo "Conectado VPN dSN"
+else
+        # notify-send -i /usr/share/icons/hicolor/48x48/emblems/emblem-ubuntuone-unsynchronized.png -t 2000 "Error conectando VPN dSN"
+	echo "Error conectando VPN dSN"
+fi
+
